@@ -1,0 +1,73 @@
+#Water related questions
+---
+section: utilities
+mandatory: true
+question: | 
+  Let's check the water and water heater. When you are ready to begin, press
+  Continue.
+continue button field: target_variable
+--- 
+section: utilities
+mandatory: true
+question: |
+  Is there enough water pressuer to meet your ordinary daily needs? (Bathing, cooking, etc.) 
+yesno: water_pressure
+---
+section: utilities
+mandatory: true
+question: |
+  From your best estimate, would you say that the hot water temperature is between 110F and 130F?  
+yesnomaybe: water_temp
+---
+section: utilities
+mandatory: true
+question: |
+  Please examine the water heater. 
+fields:
+  - "Is the water heater gas?": waterheater_gas
+    datatype: yesnoradio
+  - "Is the water heater properly vented outdoors?": waterheater_vent
+    datatype: yesnoradio
+    show if: waterheater_gas
+---
+section: utilities
+mandatory: true
+question: | 
+  The landlord must provide and pay for water. But the landlord may bill a tenant for water and sewer only if the meets strict conditions.  
+subquestion: |
+  The landlord must meet all of the following conditions to charge for water. Please select all that apply. 
+fields:
+  - " Does your landlord plan to charge your for water?": LL_watercharge
+    datatype: yesnoradio
+  - "Has the landlord installed and is maintaining a water submeter that measures water going only to your unit?": watercharge_meter
+    datatype: yesno 
+    show if: LL_watercharge
+  - "Has the landlord installed low-flow water-saving devices on all showers, faucets, and toilets in your unit": watercharge_watersave
+    datatype: yesno
+    show if: LL_watercharge
+  - "Has the landlord described the water billing arrangements between you and the landlord, in detail, in a written rental agreement": watercharge_agreement
+    datatype: yesno
+    show if: LL_watercharge
+  - "Has the landlord filed a certificate with the local board of health, or the agency responsible for enforcing the state Sanitary Code that says your unit is legal and meets the code.": watercharge_certificate
+    datatype: yesno
+    show if: LL_watercharge
+---
+#FILL IN
+---
+section: utilities
+mandatory: true
+question: |
+  Please fill in any specific details you observed about the water.
+fields:
+  - Water Details: water_description
+    input type: area
+---
+#PHOTO
+---
+section: utilities
+manadtory: true
+question: |
+  Please take general pictures of the plumbing and water heater and focused pictures of any damages you detailed before. 
+fields:
+  - Picture: water_pictures
+    datatype: files

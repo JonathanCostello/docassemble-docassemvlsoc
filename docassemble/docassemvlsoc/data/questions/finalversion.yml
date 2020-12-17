@@ -1,0 +1,749 @@
+metadata: 
+  title: Statement of Conditions Tool 
+  authors:
+  - name: Jonathan Costello
+    revision_date: 2020-12-17
+---
+sections:
+  - Introduction
+  - About you:
+    - Your Contact info
+    - Rental Address
+  - About Landlord: 
+    - Landlord Contact Info
+    - Landlord Address
+  - The Rental: 
+    - Kitchen
+    - Bedroom
+    - Bathroom
+    - Utilities
+    - Living Space
+    - Other
+  - Conclusion
+---
+features:
+  navigation: True
+  progress bar: True
+---
+mandatory: True
+code: |
+  menu_items = [ action_menu_item('Roadmap', 'road_map') ]
+---
+initial: True
+code: |
+  if returning_user(minutes=0.5):
+    welcome_back
+---
+mandatory: True
+question: |
+  Welcome to the interview
+subquestion: |
+  If you are not on a
+  smartphone-sized device,
+  you should see a navigation
+  bar to the left.
+field: sees_nav_bar
+---
+---
+event: welcome_back
+question: |
+  Welcome back!
+subquestion: |
+  You are currently in the
+  **${ nav.get_section(display=True) }**
+  section.
+
+  ${ nav }
+
+  Press "Continue" to pick up
+  where you left off.
+buttons:
+  Continue: continue
+---
+event: road_map
+question: |
+  Roadmap
+subquestion: |
+  You are currently in the
+  **${ nav.get_section(display=True) }**
+  section.
+
+  ${ nav }
+
+  Press "Continue" to resume the
+  interview.
+buttons:
+  Continue: continue
+---
+question: |
+  Welcome to the Statement of Conditions Tool
+subquestion: |
+  Hello! This is a tool to assist you with collecting all information you may require when renting a property. This tool will help automate the Statement of Condition form but simplifying the form into a Q&A.
+ 
+  First, we will cover some basic information such as your contact information and address and the Landlord's contact information and address.
+  
+  Next, the Q&A will progress through your potential rental. There are some general safety and information questions and room specific questions that will need to be answered.
+
+  If you consent to having your information used in this automated form, please continue.
+mandatory: true
+continue button field: target_variable
+section: Introduction
+---
+# USER INFORMATION
+---
+question: |
+  About You
+subquestion: |
+  What is your name?
+fields: 
+  - Full Legal Name: users_name
+mandatory: true
+section: About you
+---
+question: |
+  What is your email address?
+fields:
+  - Your E-mail: users_email
+    datatype: email
+    required: true
+section: your contact info
+mandatory: true
+---
+question: |
+  About You
+subquestion: |
+  What is the address of the property you are looking to rent? 
+fields: 
+  - Unit Number: unit_address_number
+    datatype: integer
+  - Street Address: unit_address
+    datatype: text
+  - City: unit_address_city
+    datatype: text
+  - Zip Code: unit_address_zip
+    datatype: integer
+mandatory: true
+section: Rental Address
+---
+mandatory: true
+question: |
+  About the Unit
+fields: 
+  - What Floor is the Unit on?: unit_floor
+    datatype: integer
+  - Are there more than 3 other units in the building?: other_units
+    datatype: radio 
+    choices: 
+      - Yes
+      - No 
+      - I Don't Know
+  - Is there any lead paint in the unit?: lead_paint 
+    datatype: radio 
+    choices: 
+      - Yes
+      - No 
+      - I Don't Know
+section: Rental Address
+---
+# LANDLORD INFORMATION 
+---
+question: |
+  About The Landlord
+subquestion: |
+  What is the owner's name?
+fields: 
+  - Landlord's full name: other_parties_name
+    required: true 
+mandatory: true
+section: landlord contact info
+---
+question: | 
+  What is your landlord's email address?
+fields:
+  - Landlord's E-mail: other_parties_email
+    datatype: email
+    required: true    
+mandatory: True
+section: landlord contact info
+---
+question: |
+  About The Landlord
+subquestion: |
+  What is the Landlord's address? 
+fields: 
+  - Landlord's Street Address: other_parties_address
+    datatype: text
+  - Landlord's City: other_parties_address_city
+    datatype: text
+  - Landlord's Zip Code: other_parties_address_zip
+    datatype: integer
+mandatory: true
+section: landlord address
+---
+mandatory: True
+question: |
+  Ready to proceed?
+subquestion: |
+  Thanks for all of that information, $(users_name). Now that we got that out of     the way, we can move onto the fun part, exploring the rental. First we are going to     cover some general information. Then we will go through the Kitchen, followed by the   Bathroom, and the bedroom. Any additional rooms will come after those three. 
+   
+  The rest of this tool will require you to be in the renatl space. Once you are in       the rental and are ready to proceed we will continue. 
+  To proceed with the interview,
+  click "Continue"
+continue button field: target_variable
+---
+# MOVING IN 
+---
+mandatory: true
+question: |
+  Moving In 
+subquestion: | 
+  When will the rental be available for move-in?
+fields: 
+  - "Move in date?": move_in_date
+    datatype: date 
+
+---
+mandatory: true
+question: |
+  Moving In 
+subquestion: |
+  Is there someone currently living in the rental?
+yesno: current_tenant_true
+---
+question: |
+  When is the current tenant moving out?
+fields:
+  - Current tenant movee out date: current_tenant_moveout
+    datatype: date
+    required: current_tenant_true
+---
+mandatory: true
+question: |
+  Moving In 
+subquestion: |
+  Has the Landlord informed you of any planned repairs before you move in?
+fields: 
+  - "Planned Repairs": planned_repairs
+    datatype: area
+section: the rental
+---
+question: |
+  Moving In 
+subquestion: |
+  Has the Landlord informed you of any planned repairs before you move in?
+  datatype: yesnoradio
+section: the rental 
+---
+# Health and Safety
+---
+
+---
+---
+#Kitchen
+---
+continue button field: target_variable
+question: |
+  Now Let's check out the Kitchen! 
+subquestion: |
+  Massachusetts state law has several requirements that must be followed by landlords. This tool will help identify any problems that may need to be fixed. When you are ready to begin, press
+  Continue.
+mandatory: true
+section: kitchen
+---
+#SINK - kitchen 
+---
+section: kitchen
+mandatory: true
+question: |
+  First, lets examine the sink. Please fill in the following information.
+fields:
+  - "Is there a sink large enough to wash dishes?": kitchen_sink
+    datatype: yesnoradio
+  - "Does the sink get hotwater and drain properly?": kitchen_water
+    datatype: yesnoradio
+    show if: kitchen_sink
+---
+#STOVE - kitchen 
+---
+section: kitchen
+mandatory: true
+question: |
+  Next, lets examine the stove and oven. Please fill in the following information.
+fields:
+  - "Is there a stove and oven?": stove_oven
+    datatype: yesnoradio
+  - "Is the stove and oven in proper working condition? (Unless there is a written agreement that the tenant will provide these)": stove_oven_working
+    datatype: yesnoradio
+    show if: stove_oven
+---
+#FRIDGE - kitchen 
+---
+section: kitchen
+mandatory: true
+question: |
+  Next, lets examine the refrigerator. Please fill in the following information.
+fields:
+  - "Is there enough space and a proper electrical outlet to install a refrigerator?": fridge_space
+    datatype: yesnoradio
+  - "Was a refrigerator provided by the landlord?": fridge_TF
+    datatype: yesnoradio
+  - "Is the refrigerator in proper working condition?": fridge_working
+    datatype: yesnoradio
+    show if: fridge_TF
+---
+#Lights and Electric - kitchen 
+---
+section: kitchen
+mandatory: true
+question: |
+  Now, take a look at the lights and outlets. 
+fields:
+  - "Is there at least one light fixture and at least two electrical outlets in the kichen?": kitchen_outlets
+    datatype: yesnoradio
+---
+# FLOOR - kitchen 
+---
+section: kitchen
+mandatory: true
+question: |
+  Now, take a look at the kitchen floor. 
+fields: 
+  - "Does the floor appear to be non-corrosive and waterproof?": kitchen_floor
+    datatype: yesnoradio
+--- 
+#Fill IN - kitchen 
+---
+section: kitchen
+manadtory: true
+question: |
+  Now, look around the Kitchen and please describe any damage you observe.
+fields:
+  - Kitchen Description: kitchen_description
+    input type: area
+---
+#PHOTO - kitchen 
+---
+section: kitchen
+manadtory: true
+question: |
+  Please take general pictures of the kitchen and focused pictures of any damages you detailed before. 
+fields:
+  - Picture: kitchen_pictures
+    datatype: files
+
+---
+---
+#Bathroom
+---
+section: bathroom
+continue button field: target_variable
+question: |
+  Now Let's check out the Bathroom! 
+subquestion: |
+  Massachusetts state law has several requirements that must be followed by landlords. This tool will help identify any problems that may need to be fixed. When you are ready to begin, press
+  Continue.
+mandatory: true
+---
+#PLUMBING - bathroom
+---
+section: bathroom
+mandatory: true
+question: |
+  First, lets take a look around. Please fill in the following information.
+fields:
+  - "Is there a sink free from defects?": bathroom_sink
+    datatype: yesnoradio
+  - "Is there a toilet free from defects?": bathroom_toilet
+    datatype: yesnoradio
+  - "Is there a shower or bathtub free from defects?": bathroom_bath
+    datatype: yesnoradio
+  - "Does the room that has the toilet, bathrub or shower have a closable door?": bathroom_door
+    datatype: yesnoradio
+  - "Does the bathroom have at least one light fixture?": bathroom_light
+    datatype: yesnoradio
+  - "Is the lightfixture in good repair?": bathroomlight_condition
+    datatype: yesnoradio
+    show if: bathroom_light
+  - "Is the toilet in a room used for living, sleeping, cooking or eating?": toilet_location
+    datatype: yesnoradio
+    show if: bathroom_toilet
+  - "Is the shower or tub in a room used for living, sleeping, cooking or eating?": bath_location
+    datatype: yesnoradio
+    show if: bathroom_bath    
+---
+#Ventilation - bathroom
+---
+section: bathroom
+mandatory: true 
+question: |
+  Now, lets take a look at the bathroom ventilation. 
+continue button field: target_variable
+---
+section: bathroom
+question: |
+  Does each room have at least one window, door, or mechanical vent? 
+yesno: vent_system
+---
+#Lights and Electric  - bathroom
+---
+section: bathroom
+mandatory: true
+question: |
+  Now, take a look at the lights and outlets. 
+fields:
+  - "Is there at least one light fixture and at least one electrical outlet in the bathroom?": bathroom_outlets
+    datatype: yesnoradio
+---
+# FLOOR - bathroom
+---
+section: bathroom
+mandatory: true
+question: |
+  Now, take a look at the bathroom floor. 
+fields: 
+  - "Does the floor appear to be non-corrosive and waterproof?": bathroom_floor
+    datatype: yesnoradio
+--- 
+#Fill IN - bathroom
+---
+manadtory: true
+question: |
+  Now, look around the bathroom and please describe any damage you observe.
+fields:
+  - Kitchen Description: bathroom_description
+    input type: area
+section: bathroom
+---
+#PHOTO - bathroom
+---
+section: bathroom
+manadtory: true
+question: |
+  Please take general pictures of the bathroom and focused pictures of any damages you detailed before. 
+fields:
+  - Picture: bathroom_pictures
+    datatype: files
+---
+---
+#Bedroom
+---
+section: bedroom
+mandatory: true
+continue button field: target_variable
+question: |
+  Now Let's check out the Bedroom! 
+---
+mandatory: true
+question: |
+  Everybed bedroom must have at elast 70 square feet of floor space if only one person sleeps there. If more than one person sleeps there it must have 50 addition square feet per additional person. 
+subquestion: |
+  If you have measuring tape, please measure the squarefootage of the bedroom. If you do not have a measuring instrument, please do your best to estimate the squarefootage. 
+fields: 
+  - "Does the bedroom have at least 70 square feet of floor space?": bedroom_sqft_TF
+    datatype: yesnoradio
+  - "What is the approximate squarefootage of the bedroom?": bedroom_sqft_number
+    datatype: integer
+section: bedroom
+---
+#Lights and Electric - bedroom
+---
+section: bedroom
+mandatory: true
+question: |
+  Now, take a look at the lights and outlets. 
+fields:
+  - "Is there at least one light fixture and at least one electrical outlet, **or, at least two electrical outlets in the bedroom?": bedroom_outlets
+    datatype: yesnoradio
+--- 
+#Fill IN - bedroom
+---
+section: bedroom
+manadtory: true
+question: |
+  Now, look around the bedroom and please describe any damage you observe.
+fields:
+  - Bedroom Description: bedroom_description
+    input type: area
+---
+#PHOTO - bedroom
+---
+section: bedroom
+manadtory: true
+question: |
+  Please take general pictures of the bedroom and focused pictures of any damages you detailed before. 
+fields:
+  - Picture: bedroom_pictures
+    datatype: files
+---
+# UTILITIES - heat and water 
+---
+#HEAT 
+---
+section: utilities
+mandatory: true 
+question: |
+  Does the landlord provide heat? 
+yesno: LL_heat 
+---
+section: utilities
+mandatory: true
+question: |
+  The heating equipment provided by the landlord must be in working order and maintain appropriate temperature during the heating season. 
+subquestion: |
+  Is the heating equipment in proper working order?
+yesno: heat_status  
+---
+section: utilities
+mandatory: true
+question: |
+  Does the landlord maintain a temperature of at least 64 degrees and no more than 78 degress from September 16 to June 14 in every {habitable room} and bathrooms? 
+yesno: heat_temp
+---
+#FILL IN - heat
+---
+mandatory: true
+question: |
+  Please fill in any specific details you observed about the heat system or heater.
+fields:
+  - Heat Details: heat_description
+    input type: area
+section: utilities
+---
+#PHOTO - heat
+---
+section: utilities
+manadtory: true
+question: |
+  Please upload general pictures of the heating system and heater. Please focuse on any damages you detailed before. 
+fields:
+  - Pictures: heat_pictures
+    datatype: files
+---
+---
+# UTILITIES - WATER
+---
+section: utilities
+mandatory: true
+question: | 
+  Let's check the water and water heater. When you are ready to begin, press
+  Continue.
+continue button field: target_variable
+--- 
+section: utilities
+mandatory: true
+question: |
+  Is there enough water pressuer to meet your ordinary daily needs? (Bathing, cooking, etc.) 
+yesno: water_pressure
+---
+section: utilities
+mandatory: true
+question: |
+  From your best estimate, would you say that the hot water temperature is between 110F and 130F?  
+yesnomaybe: water_temp
+---
+section: utilities
+mandatory: true
+question: |
+  Please examine the water heater. 
+fields:
+  - "Is the water heater gas?": waterheater_gas
+    datatype: yesnoradio
+  - "Is the water heater properly vented outdoors?": waterheater_vent
+    datatype: yesnoradio
+    show if: waterheater_gas
+---
+section: utilities
+mandatory: true
+question: | 
+  The landlord must provide and pay for water. But the landlord may bill a tenant for water and sewer only if the meets strict conditions.  
+subquestion: |
+  The landlord must meet all of the following conditions to charge for water. Please select all that apply. 
+fields:
+  - " Does your landlord plan to charge your for water?": LL_watercharge
+    datatype: yesnoradio
+  - "Has the landlord installed and is maintaining a water submeter that measures water going only to your unit?": watercharge_meter
+    datatype: yesno 
+    show if: LL_watercharge
+  - "Has the landlord installed low-flow water-saving devices on all showers, faucets, and toilets in your unit": watercharge_watersave
+    datatype: yesno
+    show if: LL_watercharge
+  - "Has the landlord described the water billing arrangements between you and the landlord, in detail, in a written rental agreement": watercharge_agreement
+    datatype: yesno
+    show if: LL_watercharge
+  - "Has the landlord filed a certificate with the local board of health, or the agency responsible for enforcing the state Sanitary Code that says your unit is legal and meets the code.": watercharge_certificate
+    datatype: yesno
+    show if: LL_watercharge
+---
+#FILL IN - water
+---
+section: utilities
+mandatory: true
+question: |
+  Please fill in any specific details you observed about the water.
+fields:
+  - Water Details: water_description
+    input type: area
+---
+#PHOTO - water
+---
+section: utilities
+manadtory: true
+question: |
+  Please upload general pictures of the plumbing and water heater and focused pictures of any damages you detailed before. 
+fields:
+  - Pictures: water_pictures
+    datatype: files
+---
+---
+#FILL IN - Living Space
+---
+section: Living Space
+mandatory: true
+question: |
+  Please describe the general living space and be sure to note any damages.
+fields:
+  - Water Details: living_description
+    input type: area
+---
+#PHOTO - Living Space
+---
+section: living space
+manadtory: true
+question: |
+  Please upload photos of any other general living space with a focus on damages. 
+fields:
+  - Pictures: living_pictures
+    datatype: files
+
+
+
+---
+# Other Rooms
+---
+section: other 
+mandatory: true
+question: |
+  Continue?
+fields:
+  - "Are there more rooms to examine?": more_rooms_TF
+    datatype: yesnoradio
+  - "What is the name of the next room?": favorite_fruit
+    show if: more_rooms_TF
+---
+---
+#FILL IN - other
+---
+section: other
+mandatory: true
+question: |
+  Please describe anything you think is worth noting that does not fit into the other categories.
+fields:
+  - Water Details: other_description
+    input type: area
+---
+#PHOTO - other
+---
+section: other
+manadtory: true
+question: |
+  Please upload any general pictures of damanges or anything you think is significant and worth recording. 
+fields:
+  - Pictures: other_pictures
+    datatype: files
+
+
+
+---
+---
+# User Signature
+---
+question: |
+  Sign your name
+subquestion: |
+  By signing your name, you agree that the above reported is true
+signature: users_signature
+under: |
+  ${ users_name }
+section: conclusion
+mandatory: true 
+---
+# CLOSING
+---
+
+---
+#Dead End Exit
+---
+
+mandatory: True
+code: |
+  # insert interview logic here
+  all_done
+---
+question: |
+  You have reached the end of the
+  interview.
+subquestion: |
+  I hope you had a good time!
+sets: all_done
+
+
+---
+madatory: true 
+question: |
+  Here is your Statement of Conditions Letter.
+subquestion: |
+  Does it meet your approval?
+yesno: user_approves
+attachment:
+  name: Your Statement of Condtions letter
+  filename: Statement of Conditions
+  docx template file: statement_of_conditions_template.v2.docx
+  valid formats:
+    - docx
+    - pdf
+section: conclusion
+---
+# FUNCTION 
+---
+mandatory: True
+question: Your documents are ready.
+email template: SOC_email
+email address default: |
+  ${ other_parties_email }
+attachment:
+  - name: A Statement of Conditions document
+    filename: Statement_of_Conditions_Complete.docx
+    description: |
+      A document with detailing the current conditions of the rental
+    content: |
+    valid formats:
+      - pdf
+      - docx
+always include editable files: True
+---
+template: Soc_email
+subject: |
+  Your Statement of Conditions document
+content: |
+  Dear sir or madam,
+
+  Your Statement of Conditions letter is attached hereto for your perusal.
+---
+---
+---
+# Objects
+---
+objects: 
+  users_name: user_name_first User_name_last
+  statement_of_conditions: kitchen_description bathroom_description bedroom_description heat_description water_description
+---
+#TERMS
+---
+terms:
+  habitable room: |
+   any room to be used for living, sleeping, cooking, or eating.
+---
+#Progress Bar
+---
+features:
+  progress bar: True

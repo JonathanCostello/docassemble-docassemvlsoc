@@ -1,0 +1,12 @@
+madatory: true 
+question: |
+  Here is your Statement of Conditions Letter.
+subquestion: |
+  Does it meet your approval?
+yesno: user_approves
+attachment:
+  name: Your Statement of Condtions letter
+  filename: Statement of Conditions
+  docx template file: statement_of_conditions_template.v2.docx
+  valid formats:
+    - pdf

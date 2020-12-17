@@ -1,0 +1,63 @@
+---
+#Bathroom
+---
+continue button field: target_variable
+question: |
+  Now Let's check out the Bathroom! 
+subquestion: |
+  Massachusetts state law has several requirements that must be followed by landlords. This tool will help identify any problems that may need to be fixed. When you are ready to begin, press
+  Continue.
+mandatory: true
+---
+#PLUMBING
+---
+mandatory: true
+question: |
+  First, lets take a look around. Please fill in the following information.
+fields:
+  - "Is there a sink free from defects?": bathroom_sink
+    datatype: yesnoradio
+  - "Is there a toilet free from defects?": bathroom_toilet
+    datatype: yesnoradio
+  - "Is there a shower or bathtub free from defects?": bathroom_bath
+    datatype: yesnoradio
+  - "Does the room that has the toilet, bathrub or shower have a closable door?": bathroom_door
+    datatype: yesnoradio
+  - "Does the bathroom have at least one light fixture?": bathroom_light
+    datatype: yesnoradio
+  - "Is the lightfixture in good repair?": bathroomlight_condition
+    datatype: yesnoradio
+    show if: bathroom_light
+  - "Is the toilet in a room used for living, sleeping, cooking or eating?": toilet_location
+    datatype: yesnoradio
+    show if: bathroom_toilet
+  - "Is the shower or tub in a room used for living, sleeping, cooking or eating?": bath_location
+    datatype: yesnoradio
+    show if: bathroom_bath    
+---
+#Ventilation
+---
+mandatory: true 
+question: |
+  Now, lets take a look at the bathroom ventilation. 
+
+
+
+--- 
+#Fill IN
+---
+manadtory: true
+question: |
+  Now, look around the bathroom and please describe any damage you observe.
+fields:
+  - Kitchen Description: bathroom_damages_description
+    input type: area
+---
+#PHOTO
+---
+manadtory: true
+question: |
+  Please take general pictures of the bathroom and focused pictures of any damages you detailed before. 
+fields:
+  - Picture: bathroom_pictures
+    datatype: files

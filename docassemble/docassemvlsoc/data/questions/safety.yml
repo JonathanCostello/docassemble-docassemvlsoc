@@ -1,0 +1,20 @@
+# SAFETY 
+---
+---
+# GENERAL SAFETY 
+---
+mandatory: true
+question: |
+  Now for some general safety questions. 
+continue button field: target_variable
+---
+mandatory: true 
+question: |
+  Doors and Windows
+fields: 
+  - "Are all exits unobstructed?": exit_unobstructed 
+    datatype: yesnoradio   
+  - "Do all exterior doors and windows have working locks?": exterior_locks
+    datatype: yesnoradio 
+  - "Do all windows that open to the exterior have screens for April-October?": window_screens
+    datatype: yesnoradio 

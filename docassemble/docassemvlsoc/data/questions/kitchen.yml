@@ -1,0 +1,82 @@
+---
+#Kitchen
+---
+continue button field: target_variable
+question: |
+  Now Let's check out the Kitchen! 
+subquestion: |
+  Massachusetts state law has several requirements that must be followed by landlords. This tool will help identify any problems that may need to be fixed. When you are ready to begin, press
+  Continue.
+mandatory: true
+---
+#SINK
+---
+mandatory: true
+question: |
+  First, lets examine the sink. Please fill in the following information.
+fields:
+  - "Is there a sink large enough to wash dishes?": kitchen_sink
+    datatype: yesnoradio
+  - "Does the sink get hotwater and drain properly?": kitchen_water
+    datatype: yesnoradio
+    show if: kitchen_sink
+---
+#STOVE
+---
+mandatory: true
+question: |
+  Next, lets examine the stove and oven. Please fill in the following information.
+fields:
+  - "Is there a stove and oven?": stove_oven
+    datatype: yesnoradio
+  - "Is the stove and oven in proper working condition? (Unless there is a written agreement that the tenant will provide these)": stove_oven_working
+    datatype: yesnoradio
+    show if: stove_oven
+---
+#FRIDGE
+---
+mandatory: true
+question: |
+  Next, lets examine the refrigerator. Please fill in the following information.
+fields:
+  - "Is there enough space and a proper electrical outlet to install a refrigerator?": fridge_space
+    datatype: yesnoradio
+  - "Was a refrigerator provided by the landlord?": fridge_TF
+    datatype: yesnoradio
+  - "Is the refrigerator in proper working condition?": fridge_working
+    datatype: yesnoradio
+    show if: fridge_TF
+---
+#Lights and Electric 
+---
+mandatory: true
+question: |
+  Now, take a look at the lights and outlets. 
+fields:
+  - "Is there at least one light fixture and at least two electrical outlets in the kichen?": kitchen_outlets
+    datatype: yesnoradio
+---
+# FLOOR
+---
+mandatory: true
+question: |
+  Now, take a look at the floor. Does the floor appear to be non-corrosive and waterproof?
+yesno: kitchen_floor
+--- 
+#Fill IN
+---
+manadtory: true
+question: |
+  Now, look around the Kitchen and please describe any damage you observe.
+fields:
+  - Kitchen Description: kitchen_damages_description
+    input type: area
+---
+#PHOTO
+---
+manadtory: true
+question: |
+  Please take general pictures of the kitchen and focused pictures of any damages you detailed before. 
+fields:
+  - Picture: kitchen_pictures
+    datatype: files

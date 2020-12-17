@@ -1,0 +1,46 @@
+metadata:
+  title: Statement of Conditions Photos
+  short title: SoC Pics
+---
+mandatory: True
+question: |
+  Your document is ready.
+subquestion: |
+  Thank you for using this interview.
+buttons:
+  - Exit: exit
+  - Restart: restart
+attachments:
+  - name: Statement_of_Conditions_Photos.Docx
+    filename: Statement_of_Conditions_PhotosDocx
+    docx template file: Statement_of_Conditions_Pictures.docx
+---
+code: |
+  bathroom_pictures = ${ bathroom_pictures }
+---
+code: |
+  bedroom_pictures = ${ bedroom_pictures }
+---
+code: |
+  heat_pictures = ${ heat_pictures }
+---
+code: |
+  kitchen_pictures = ${ kitchen_pictures }
+---
+code: |
+  living_pictures = ${ living_pictures }
+---
+code: |
+  other_pictures = ${ other_pictures }
+---
+code: |
+  session_local = session_local
+---
+code: |
+  user_local = user_local
+---
+code: |
+  users_name = ${ users_name }
+---
+code: |
+  water_pictures = ${ water_pictures }

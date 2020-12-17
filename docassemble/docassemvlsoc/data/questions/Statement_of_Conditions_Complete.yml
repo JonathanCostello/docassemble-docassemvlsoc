@@ -1,0 +1,25 @@
+metadata:
+  title: Statement of Conditions Complete
+  short title: SoC Complete
+---
+mandatory: True
+question: |
+  Your document is ready.
+subquestion: |
+  Thank you for using this interview.
+buttons:
+  - Exit: exit
+  - Restart: restart
+attachments:
+  - name: Statement_of_Conditions_Complete
+    filename: Statement_of_Conditions_Complete
+    docx template file: statement_of_conditions_template.v3.docx
+---
+code: |
+  device_local = device=local
+---
+code: |
+  local = local
+---
+code: |
+  session_local = session_local

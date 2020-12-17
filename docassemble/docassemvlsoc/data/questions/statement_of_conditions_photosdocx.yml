@@ -1,0 +1,69 @@
+metadata:
+  title: Statement of Conditions Photos
+  short title: SoC Pics
+---
+mandatory: True
+question: |
+  Your document is ready.
+subquestion: |
+  Thank you for using this interview.
+buttons:
+  - Exit: exit
+  - Restart: restart
+attachments:
+  - name: Statement_of_Conditions_Photos.Docx
+    filename: Statement_of_Conditions_PhotosDocx
+    docx template file: Statement_of_Conditions_Pictures.docx
+---
+question: |
+  Please upload photos of the bathroom with a focus on any damage.
+fields:
+  - no label: bathroom_pictures
+    datatype: file
+---
+question: |
+  Please upload photos of the bathroom with a focus on any damage.
+fields:
+  - no label: bedroom_pictures
+    datatype: file
+---
+question: |
+  Please upload photos of the heating system with a focus on any damage.
+fields:
+  - no label: heat_pictures
+    datatype: file
+---
+question: |
+  Please upload any photos of the kitchen with a focus on any damage.
+fields:
+  - no label: kitchen_pictures
+    datatype: file
+---
+question: |
+  Please upload pictures of the living space with a focus on any damage.
+fields:
+  - no label: living_pictures
+    datatype: file
+---
+question: |
+  Please upload any other pictures
+fields:
+  - no label: other_pictures
+    datatype: file
+---
+question: |
+  session_local
+fields:
+  - no label: session_local
+---
+code: |
+  user_local = user_local
+---
+code: |
+  users_name = {users_name}
+---
+question: |
+  Please upload pictures of the plumbing system with a focus on any damage.
+fields:
+  - no label: water_pictures
+    datatype: file

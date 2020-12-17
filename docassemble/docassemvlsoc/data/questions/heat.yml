@@ -1,0 +1,40 @@
+#HEAT 
+---
+mandatory: true 
+question: |
+  Does the landlord provide heat? 
+yesno: LL_heat 
+---
+mandatory: true
+question: |
+  The heating equipment provided by the landlord must be in working order and maintain appropriate temperature during the heating season. 
+subquestion: |
+  Is the heating equipment in proper working order?
+yesno: heat_status  
+---
+mandatory: true
+question: |
+  Does the landlord maintain a temperature of at least 64 degrees and no more than 78 degress from September 16 to June 14 in every {habitable room} and bathrooms? 
+yesno: heat_temp
+---
+#FILL IN
+---
+mandatory: true
+question: |
+  Please fill in any specific details you observed about the heat system or heater.
+fields:
+  - Heat Details: heat_description
+    input type: area
+---
+#PHOTO
+---
+manadtory: true
+question: |
+  Please take general pictures of the heating system and focused pictures of any damages you detailed before. 
+fields:
+  - Picture: heat_pictures
+    datatype: files
+---
+terms:
+  habitable room: |
+   any room to be used for living, sleeping, cooking, or eating.

@@ -1,0 +1,34 @@
+---
+#Bedroom
+---
+mandatory: true
+continue button field: target_variable
+question: |
+  Now Let's check out the Bedroom! 
+---
+mandatory: true
+question: |
+  Everybed bedroom must have at elast 70 square feet of floor space if only one person sleeps there. If more than one person sleeps there it must have 50 addition square feet per additional person. 
+subquestion: |
+  If you have measuring tape, please measure the squarefootage of the bedroom. If you do not have a measuring instrument, please do your best to estimate the squarefootage. 
+fields: 
+  - "Does the bedroom have at least 70 square feet of floor space?": bedroom_sqft
+
+--- 
+#Fill IN
+---
+manadtory: true
+question: |
+  Now, look around the bedroom and please describe any damage you observe.
+fields:
+  - Kitchen Description: bedroom_damages_description
+    input type: area
+---
+#PHOTO
+---
+manadtory: true
+question: |
+  Please take general pictures of the bedroom and focused pictures of any damages you detailed before. 
+fields:
+  - Picture: bedroom_pictures
+    datatype: files
