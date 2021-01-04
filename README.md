@@ -1,6 +1,6 @@
 # docassemble.docassemvlsoc
 
-Statement of Conditions Photos
+Statement of Conditions 
 
 ## Author
 

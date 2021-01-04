@@ -45,7 +45,7 @@ def find_package_data(where='.', package='', exclude=standard_exclude, exclude_d
 setup(name='docassemble.docassemvlsoc',
       version='1.1',
       description=('Statement of Conditions '),
-      long_description='# docassemble.docassemvlsoc\r\n\r\nStatement of Conditions Photos\r\n\r\n## Author\r\n\r\nJonathan Costello, Jcostello2@su.suffolk.edu\r\n\r\n',
+      long_description='# docassemble.docassemvlsoc\n\nStatement of Conditions \n\n## Author\n\nJonathan Costello, Jcostello2@su.suffolk.edu\n\n',
       long_description_content_type='text/markdown',
       author='Jonathan Costello',
       author_email='Jcostello2@su.suffolk.edu',
