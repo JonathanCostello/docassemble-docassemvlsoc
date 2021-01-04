@@ -266,10 +266,9 @@ question: |
   First, lets examine the sink. Please fill in the following information.
 fields:
   - "Is there a sink large enough to wash dishes?": kitchen_sink
-    datatype: yesnoradio
+    datatype: noyesradio
   - "Does the sink get hotwater and drain properly?": kitchen_water
-    datatype: yesnoradio
-    show if: kitchen_sink
+    datatype: noyesradio
 ---
 #STOVE - kitchen 
 ---
@@ -279,10 +278,9 @@ question: |
   Next, lets examine the stove and oven. Please fill in the following information.
 fields:
   - "Is there a stove and oven?": stove_oven
-    datatype: yesnoradio
+    datatype: noyesradio
   - "Is the stove and oven in proper working condition? (Unless there is a written agreement that the tenant will provide these)": stove_oven_working
-    datatype: yesnoradio
-    show if: stove_oven
+    datatype: noyesradio
 ---
 #FRIDGE - kitchen 
 ---
@@ -292,12 +290,11 @@ question: |
   Next, lets examine the refrigerator. Please fill in the following information.
 fields:
   - "Is there enough space and a proper electrical outlet to install a refrigerator?": fridge_space
-    datatype: yesnoradio
+    datatype: noyesradio
   - "Was a refrigerator provided by the landlord?": fridge_TF
-    datatype: yesnoradio
+    datatype: noyesradio
   - "Is the refrigerator in proper working condition?": fridge_working
-    datatype: yesnoradio
-    show if: fridge_TF
+    datatype: noyesradio
 ---
 #Lights and Electric - kitchen 
 ---
@@ -307,7 +304,7 @@ question: |
   Now, take a look at the lights and outlets. 
 fields:
   - "Is there at least one light fixture and at least two electrical outlets in the kichen?": kitchen_outlets
-    datatype: yesnoradio
+    datatype: noyesradio
 ---
 # FLOOR - kitchen 
 ---
@@ -317,7 +314,7 @@ question: |
   Now, take a look at the kitchen floor. 
 fields: 
   - "Does the floor appear to be non-corrosive and waterproof?": kitchen_floor
-    datatype: yesnoradio
+    datatype: noyesradio
 --- 
 #Fill IN - kitchen 
 ---
@@ -360,23 +357,23 @@ question: |
   First, lets take a look around. Please fill in the following information.
 fields:
   - "Is there a sink free from defects?": bathroom_sink
-    datatype: yesnoradio
+    datatype: noyesradio
   - "Is there a toilet free from defects?": bathroom_toilet
-    datatype: yesnoradio
+    datatype: noyesradio
   - "Is there a shower or bathtub free from defects?": bathroom_bath
-    datatype: yesnoradio
+    datatype: noyesradio
   - "Does the room that has the toilet, bathrub or shower have a closable door?": bathroom_door
-    datatype: yesnoradio
+    datatype: noyesradio
   - "Does the bathroom have at least one light fixture?": bathroom_light
-    datatype: yesnoradio
+    datatype: noyesradio
   - "Is the lightfixture in good repair?": bathroomlight_condition
-    datatype: yesnoradio
+    datatype: noyesradio
 
   - "Is the toilet in a room used for living, sleeping, cooking or eating?": toilet_location
-    datatype: yesnoradio
+    datatype: noyesradio
 
   - "Is the shower or tub in a room used for living, sleeping, cooking or eating?": bath_location
-    datatype: yesnoradio
+    datatype: noyesradio
    
 ---
 #Ventilation - bathroom
@@ -400,7 +397,7 @@ question: |
   Now, take a look at the lights and outlets. 
 fields:
   - "Is there at least one light fixture and at least one electrical outlet in the bathroom?": bathroom_outlets
-    datatype: yesnoradio
+    datatype: noyesradio
 ---
 # FLOOR - bathroom
 ---
@@ -410,7 +407,7 @@ question: |
   Now, take a look at the bathroom floor. 
 fields: 
   - "Does the floor appear to be non-corrosive and waterproof?": bathroom_floor
-    datatype: yesnoradio
+    datatype: noyesradio
 --- 
 #Fill IN - bathroom
 ---
@@ -448,7 +445,7 @@ subquestion: |
   If you have measuring tape, please measure the squarefootage of the bedroom. If you do not have a measuring instrument, please do your best to estimate the squarefootage. 
 fields: 
   - "Does the bedroom have at least 70 square feet of floor space?": bedroom_sqft_TF
-    datatype: yesnoradio
+    datatype: noyesradio
   - "What is the approximate squarefootage of the bedroom?": bedroom_sqft_number
     datatype: integer
 section: bedroom
@@ -461,7 +458,7 @@ question: |
   Now, take a look at the lights and outlets. 
 fields:
   - "Is there at least one light fixture and at least one electrical outlet, **or**, at least two electrical outlets in the bedroom?": bedroom_outlets
-    datatype: yesnoradio
+    datatype: noyesradio
 --- 
 #Fill IN - bedroom
 ---
@@ -555,9 +552,9 @@ question: |
   Please examine the water heater. 
 fields:
   - "Is the water heater gas?": waterheater_gas
-    datatype: yesnoradio
+    datatype: noyesradio
   - "Is the water heater properly vented outdoors?": waterheater_vent
-    datatype: yesnoradio
+    datatype: noyesradio
     show if: waterheater_gas
 ---
 section: utilities
@@ -568,7 +565,7 @@ subquestion: |
   The landlord must meet all of the following conditions to charge for water. Please select all that apply. 
 fields:
   - " Does your landlord plan to charge your for water?": LL_watercharge
-    datatype: yesnoradio
+    datatype: noyesradio
   - "Has the landlord installed and is maintaining a water submeter that measures water going only to your unit?": watercharge_meter
     datatype: yesno 
     show if: LL_watercharge
