@@ -101,6 +101,14 @@ mandatory: true
 section: About you
 ---
 question: |
+  What is today's date?
+fields: 
+  - Today: signature_date
+    datatype: date 
+mandatory: true
+section: About you
+---
+question: |
   What is your email address?
 fields:
   - Your E-mail: users_email
@@ -118,10 +126,10 @@ fields:
     datatype: integer
   - Street Address: unit_address
     datatype: text
-  - City: unit_address_city
+  - City: unit_city
     datatype: text
-  - Zip Code: unit_address_zip
-    datatype: integer
+  - Zip Code: unit_zip
+    datatype: text
 mandatory: true
 section: Rental Address
 ---
@@ -173,10 +181,10 @@ subquestion: |
 fields: 
   - Landlord's Street Address: other_parties_address
     datatype: text
-  - Landlord's City: other_parties_address_city
+  - Landlord's City: other_parties_city
     datatype: text
-  - Landlord's Zip Code: other_parties_address_zip
-    datatype: integer
+  - Landlord's Zip Code: other_parties_zip
+    datatype: text
 mandatory: true
 section: landlord address
 ---
@@ -184,7 +192,7 @@ mandatory: True
 question: |
   Ready to proceed?
 subquestion: |
-  Thanks for all of that information, $(users_name). Now that we got that out of     the way, we can move onto the fun part, exploring the rental. First we are going to     cover some general information. Then we will go through the Kitchen, followed by the   Bathroom, and the bedroom. Any additional rooms will come after those three. 
+  Thanks for all of that information. Now that we got that out of     the way, we can move onto the fun part, exploring the rental. First we are going to     cover some general information. Then we will go through the Kitchen, followed by the   Bathroom, and the bedroom. Any additional rooms will come after those three. 
    
   The rest of this tool will require you to be in the renatl space. Once you are in       the rental and are ready to proceed we will continue. 
   To proceed with the interview,
@@ -213,7 +221,7 @@ yesno: current_tenant_true
 question: |
   When is the current tenant moving out?
 fields:
-  - Current tenant movee out date: current_tenant_moveout
+  - Current tenant move out date: current_tenant_moveout
     datatype: date
     required: current_tenant_true
 ---
@@ -231,7 +239,7 @@ question: |
   Moving In 
 subquestion: |
   Has the Landlord informed you of any planned repairs before you move in?
-  datatype: yesnoradio
+datatype: yesnoradio
 section: the rental 
 ---
 # Health and Safety
@@ -363,13 +371,13 @@ fields:
     datatype: yesnoradio
   - "Is the lightfixture in good repair?": bathroomlight_condition
     datatype: yesnoradio
-    show if: bathroom_light
+
   - "Is the toilet in a room used for living, sleeping, cooking or eating?": toilet_location
     datatype: yesnoradio
-    show if: bathroom_toilet
+
   - "Is the shower or tub in a room used for living, sleeping, cooking or eating?": bath_location
     datatype: yesnoradio
-    show if: bathroom_bath    
+   
 ---
 #Ventilation - bathroom
 ---
@@ -410,7 +418,7 @@ manadtory: true
 question: |
   Now, look around the bathroom and please describe any damage you observe.
 fields:
-  - Kitchen Description: bathroom_description
+  - Bathroom Description: bathroom_description
     input type: area
 section: bathroom
 ---
@@ -452,7 +460,7 @@ mandatory: true
 question: |
   Now, take a look at the lights and outlets. 
 fields:
-  - "Is there at least one light fixture and at least one electrical outlet, **or, at least two electrical outlets in the bedroom?": bedroom_outlets
+  - "Is there at least one light fixture and at least one electrical outlet, **or**, at least two electrical outlets in the bedroom?": bedroom_outlets
     datatype: yesnoradio
 --- 
 #Fill IN - bedroom
@@ -602,7 +610,7 @@ mandatory: true
 question: |
   Please describe the general living space and be sure to note any damages.
 fields:
-  - Water Details: living_description
+  - Living Space Details: living_description
     input type: area
 ---
 #PHOTO - Living Space
@@ -627,7 +635,7 @@ question: |
 fields:
   - "Are there more rooms to examine?": more_rooms_TF
     datatype: yesnoradio
-  - "What is the name of the next room?": favorite_fruit
+  - "What is the name of the next room?": more_rooms_name
     show if: more_rooms_TF
 ---
 ---
@@ -638,7 +646,7 @@ mandatory: true
 question: |
   Please describe anything you think is worth noting that does not fit into the other categories.
 fields:
-  - Water Details: other_description
+  - Other Details: other_description
     input type: area
 ---
 #PHOTO - other
@@ -673,61 +681,21 @@ mandatory: true
 ---
 #Dead End Exit
 ---
-
-mandatory: True
-code: |
-  # insert interview logic here
-  all_done
----
-question: |
-  You have reached the end of the
-  interview.
-subquestion: |
-  I hope you had a good time!
-sets: all_done
-
-
----
-madatory: true 
-question: |
-  Here is your Statement of Conditions Letter.
-subquestion: |
-  Does it meet your approval?
-yesno: user_approves
-attachment:
-  name: Your Statement of Condtions letter
-  filename: Statement of Conditions
-  docx template file: statement_of_conditions_template.v2.docx
-  valid formats:
-    - docx
-    - pdf
-section: conclusion
 ---
 # FUNCTION 
 ---
 mandatory: True
-question: Your documents are ready.
-email template: SOC_email
-email address default: |
-  ${ other_parties_email }
-attachment:
-  - name: A Statement of Conditions document
-    filename: Statement_of_Conditions_Complete.docx
-    description: |
-      A document with detailing the current conditions of the rental
-    content: |
-    valid formats:
-      - pdf
-      - docx
-always include editable files: True
----
-template: Soc_email
-subject: |
-  Your Statement of Conditions document
-content: |
-  Dear sir or madam,
-
-  Your Statement of Conditions letter is attached hereto for your perusal.
+question: |
+  Your document is ready.
+subquestion: |
+  Thank you for using this interview.
+buttons:
+  - Exit: exit
+  - Restart: restart
+attachments:
+  - name: Statement of Conditions Complete
+    filename: Statement_of_Conditions_Complete
+    docx template file: statement_of_conditions_template.full.docx
 ---
 ---
 ---
